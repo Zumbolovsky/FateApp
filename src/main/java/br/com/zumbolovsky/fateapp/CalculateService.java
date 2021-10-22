@@ -44,4 +44,8 @@ public class CalculateService {
     public String getProperty(final Deep deep) {
         return deep.getStub().getExample().getProperty();
     }
+
+    public String staticTest(final String test) {
+        return ClassWithStaticMethod.getFirstLetterCapitalized(test);
+    }
 }

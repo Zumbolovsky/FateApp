@@ -3,7 +3,12 @@ package br.com.zumbolovsky.fateapp;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
+import org.mockito.Answers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 
@@ -270,5 +275,20 @@ class CalculateServiceTest {
 
         //Assetion
         Assertions.assertEquals(property, test);
+    }
+
+    @Test
+    public void testingClassWithStaticTest() {
+        try (final MockedStatic<ClassWithStaticMethod> mockedStatic = Mockito.mockStatic(ClassWithStaticMethod.class)) {
+            final String testValue = null;
+            mockedStatic.when(() -> ClassWithStaticMethod.getFirstLetterCapitalized(testValue)).thenReturn(testValue);
+            String test = calculateService.staticTest(testValue);
+            Assertions.assertNull(test);
+
+            final String testValue2 = "test";
+            mockedStatic.when(() -> ClassWithStaticMethod.getFirstLetterCapitalized(testValue2)).thenReturn(testValue2);
+            test = calculateService.staticTest(testValue2);
+            Assertions.assertEquals(test, testValue2);
+        }
     }
 }
