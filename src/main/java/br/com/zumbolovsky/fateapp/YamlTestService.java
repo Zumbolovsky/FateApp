@@ -12,7 +12,8 @@ public class YamlTestService {
     public static void main(final String[] args) {
         final YamlReader reader = new YamlReader();
         try {
-            LOGGER.info("File read outputs class as: \n{}", reader.read(new FileInputStream("src/main/resources/test.yml")));
+            final FileInputStream inputStream = new FileInputStream("src/main/resources/test.yml");
+            LOGGER.info("File read outputs class as: \n{}", reader.read(inputStream));
         } catch(final FileNotFoundException e) {
             LOGGER.info("File not found");
             throw new RuntimeException(e);
