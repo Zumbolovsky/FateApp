@@ -29,6 +29,7 @@ public class BouncycastleService {
             LOGGER.info("Sign unsuccessful! Not verified!");
         }
     }
+
     private static String encodeBase64String(final String testText) {
         return new String(Base64.encodeBase64(testText.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
     }
