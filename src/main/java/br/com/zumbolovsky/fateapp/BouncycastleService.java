@@ -6,6 +6,7 @@ import java.security.KeyPairGenerator;
 import java.security.SecureRandom;
 import java.security.Security;
 import java.security.Signature;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,9 @@ public class BouncycastleService {
     public static void main(final String[] args) {
         Security.addProvider(new BouncyCastleProvider());
         final KeyPair keyPair = generateKeyPair();
-        final String base64EncodedText = "Base64EncodedText";
+        final String base64EncodedText = encodeBase64String("testText");
+        LOGGER.info("Base 64 encoded value: {}", base64EncodedText);
+
         final byte[] signature = sign(keyPair, base64EncodedText);
         final boolean verified = verify(keyPair, base64EncodedText, signature);
         if(verified) {
@@ -25,6 +28,9 @@ public class BouncycastleService {
         } else {
             LOGGER.info("Sign unsuccessful! Not verified!");
         }
+    }
+    private static String encodeBase64String(final String testText) {
+        return new String(Base64.encodeBase64(testText.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
     }
 
     private static KeyPair generateKeyPair() {
