@@ -39,6 +39,7 @@ public class BouncycastleService {
         generator.initialize(2048, new SecureRandom());
         return generator.generateKeyPair();
     }
+
     private static KeyPairGenerator getKeyPairGenerator() {
         try {
             return KeyPairGenerator.getInstance("RSA", "BC");
