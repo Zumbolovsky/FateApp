@@ -31,6 +31,15 @@ spring:
   mustache:
     check-template-location: false
 
+  #These credentials are created via the GCP (Google Cloud Platform) "APIs & Services" dashboard.
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 161780591219-393b7qlnia8ca9s2bgg50vjls6ulusjg.apps.googleusercontent.com
+            client-secret: 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
+
 mongodb:
   connection: mongodb://root:root@localhost:27017
   database: fate
