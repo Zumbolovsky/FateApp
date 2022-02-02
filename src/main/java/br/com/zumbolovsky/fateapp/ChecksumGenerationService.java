@@ -12,9 +12,10 @@ public class ChecksumGenerationService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ChecksumGenerationService.class);
 
     public static void main(final String[] args) {
-        try(final FileInputStream inputStream = new FileInputStream("test.txt")) {
+        try(final FileInputStream inputStream = new FileInputStream("src/main/resources/test.txt")) {
             final MessageDigest shaDigest = MessageDigest.getInstance("SHA-256");
-            LOGGER.info("Generated checksum: {}", generateChecksum(inputStream, shaDigest));
+            final String checksum = generateChecksum(inputStream, shaDigest);
+            LOGGER.info("Generated checksum: {}", checksum );
         } catch(final IOException e) {
             LOGGER.info("File not found!");
             throw new RuntimeException(e);
