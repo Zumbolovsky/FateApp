@@ -19,16 +19,16 @@ public class FileWriterService {
      * <br>
      * - For absolute paths (Linux example): /home/andrew-siquieri/test.txt
      * <br>
-     * - For relative paths (project source directory): test.txt
+     * - For relative paths (project source directory): src/main/resources/test.txt
      * */
     public static void main(final String[] args) {
         try {
-            final Path readPath = Paths.get("test.txt");
+            final Path readPath = Paths.get("src/main/resources/test.txt");
             LOGGER.info("Text contained in the file is: {}", Files.readString(readPath));
             byte b = 1;
             long l = System.currentTimeMillis();
             //The resulting file won't be readable because it is a bunch of bytes
-            final Path writePath = Paths.get("result.txt");
+            final Path writePath = Paths.get("src/main/resources/result.txt");
             Files.deleteIfExists(writePath);
             Files.write(writePath, new byte[]{b});
             Files.write(writePath, Longs.toByteArray(l), APPEND);
