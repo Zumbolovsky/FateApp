@@ -17,7 +17,8 @@ public class FileWriterService {
     /**
      * {@code Paths.get(String, String...)} works with absolute or relative paths:
      * <br>
-     * - For absolute paths (Linux example): /home/andrew-siquieri/test.txt
+     * - For absolute paths (Linux example): /home/<user>/test.txt
+     * - For absolute paths (Windows example): C:\\Users\\<user>\\Documents\\test.txt
      * <br>
      * - For relative paths (project source directory): src/main/resources/test.txt
      * */
