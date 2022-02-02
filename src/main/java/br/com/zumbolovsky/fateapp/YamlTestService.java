@@ -17,6 +17,14 @@ public class YamlTestService {
         readAndExecute(inputStream -> LOGGER.info("File read outputs string as: \n{}", reader.readAsString(inputStream)));
     }
 
+    /**
+     * {@code new FileInputStream(String)} works with absolute or relative paths:
+     * <br>
+     * - For absolute paths (Linux example): /home/<user>/test.yml
+     * - For absolute paths (Windows example): C:\\Users\\<user>\\Documents\\test.yml
+     * <br>
+     * - For relative paths (project source directory): src/main/resources/test.yml
+     * */
     private static void readAndExecute(final Consumer<InputStream> consumer) {
         try (FileInputStream inputStream = new FileInputStream("src/main/resources/test.yml")) {
             consumer.accept(inputStream);
