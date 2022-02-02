@@ -6,8 +6,8 @@ import java.security.KeyPairGenerator;
 import java.security.SecureRandom;
 import java.security.Security;
 import java.security.Signature;
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.util.encoders.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +31,7 @@ public class BouncycastleService {
     }
 
     private static String encodeBase64String(final String testText) {
-        return new String(Base64.encodeBase64(testText.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+        return Base64.toBase64String( testText.getBytes( StandardCharsets.UTF_8 ) );
     }
 
     private static KeyPair generateKeyPair() {
