@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.plugin.core.PluginRegistry;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -22,7 +23,7 @@ public class KotlinAppService {
     }
 
     public Integer calculateAll(Integer... valores) {
-        if (valores == null || valores.length == 0) {
+        if (valores == null || valores.length == 0 || Arrays.stream(valores).anyMatch(x -> x == 0)) {
             throw new RuntimeException("Valores inválidos");
         }
         Integer sumOf = Stream.of(valores).map(valor -> kotlinOtherService.calculate(valor, 2)).reduce(Integer::sum).orElse(0);
