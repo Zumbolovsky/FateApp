@@ -36,7 +36,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('WRITE_PRIVILEGE')")
     @Operation(summary = "Sign up a user with specific role and registration information.")
     public void signUpByRole(@PathVariable("role") String role, @RequestBody @Validated UserVO userVO) {
-        final UserInfo userInfo = userVO.toUserInfo(roleService.findRoleByName(role));
+        final UserInfo userInfo = userVO.toUserInfo();
         userService.signUp(userInfo);
     }
 
