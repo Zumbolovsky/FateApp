@@ -23,7 +23,7 @@ public class KotlinAppService {
     }
 
     public Integer calculateAll(Integer... valores) {
-        if (valores == null || valores.length == 0 || Arrays.stream(valores).noneMatch(x -> x == 0)) {
+        if (valores == null || valores.length == 0) {
             throw new RuntimeException("Valores inválidos");
         }
         Integer sumOf = Stream.of(valores).map(valor -> kotlinOtherService.calculate(valor, 2)).reduce(Integer::sum).orElse(0);
