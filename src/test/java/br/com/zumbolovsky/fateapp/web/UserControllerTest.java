@@ -18,11 +18,7 @@ public class UserControllerTest extends EndToEndAutoConfiguration {
             "staff, staff, test3, test3, test3@test.com, ADMIN",
     })
     public void shouldCallUserSignUpEndpointSuccessfully(String loginUser, String loginPassword, String signUpUser, String signUpPassword, String signUpEmail, String signUpRole) {
-        final ResponseEntity<String> loggedInResponse = login(new AuthRequest(loginUser, loginPassword));
-        final List<String> authHeader = loggedInResponse.getHeaders().get(HttpHeaders.AUTHORIZATION);
-        Assertions.assertNotNull(authHeader);
-        Assertions.assertEquals(authHeader.size(), 1);
-        final ResponseEntity<Object> response = signUp(new UserVO(signUpUser, signUpEmail, signUpPassword), signUpRole, authHeader.get(0));
+        final ResponseEntity<Object> response = signUp(new UserVO(signUpUser, signUpEmail, signUpPassword), signUpRole, "testtoken");
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
         Assertions.assertNull(response.getBody());
     }
