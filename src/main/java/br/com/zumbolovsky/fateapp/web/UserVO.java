@@ -64,6 +64,15 @@ public class UserVO implements Serializable {
         );
     }
 
+    public UserInfo toUserInfo() {
+        return new UserInfo(
+                user,
+                email,
+                password,
+                null
+        );
+    }
+
     public static UserVO fromUserInfo(UserInfo userInfo) {
         return new UserVO(
                 userInfo.getUser(),

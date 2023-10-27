@@ -57,6 +57,9 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void signUp(UserInfo userInfo) {
+        if (userInfo.getRoles() == null) {
+            throw new RuntimeException("Unable to add user without roles");
+        }
         userInfo.setPassword(MD5Util.computeMD5(userInfo.getPassword()));
         userInfoRepository.findOne(Example.of(userInfo))
             .ifPresentOrElse(existingUser -> {
