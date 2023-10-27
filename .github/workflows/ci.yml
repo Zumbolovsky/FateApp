@@ -1,4 +1,4 @@
-name: CI
+name: CI (TEST)
 
 on:
   pull_request:
@@ -24,4 +24,11 @@ jobs:
         run: chmod +x mvnw
 
       - name: Maven Test
-        run: ./mvnw test
+        run: ./mvnw clean verify
+
+      - name: Test Report
+        uses: actions/upload-artifact@v3
+        if: success() || failure()
+        with:
+          name: SpringBoot Report               # Name of the folder
+          path: target/site/serenity/           # Path to test results
